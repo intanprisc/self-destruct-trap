@@ -29,6 +29,8 @@ contract SelfDestructResponseTrap {
                 abi.decode(responseData, (address, uint256, uint256, string, bool));
             
             if (isThreat) {
+                require(!flaggedWallets[wallet], "Already flagged");
+
                 alerts.push(ThreatAlert({
                     wallet: wallet,
                     balance: balance,
